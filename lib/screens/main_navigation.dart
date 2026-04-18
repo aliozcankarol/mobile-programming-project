@@ -1,9 +1,10 @@
 // lib/screens/main_navigation.dart
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'home_page.dart';
 import 'search_page.dart';
-import 'watchlist_page.dart';
+import 'watchlist_screen.dart'; // Yeni yazdığımız servis tabanlı sayfa
 import 'profile_page.dart';
 
 class MainNavigation extends StatefulWidget {
@@ -20,7 +21,7 @@ class _MainNavigationState extends State<MainNavigation> {
   final List<Widget> _pages = [
     const HomePage(),
     const SearchPage(),
-    const WatchlistPage(),
+    WatchlistScreen(userId: FirebaseAuth.instance.currentUser?.uid ?? ''), // Firestore'a bağlı liste sayfamız
     const ProfilePage(),
   ];
 

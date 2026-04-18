@@ -9,8 +9,8 @@ class WatchlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Örnek olarak listedeki ilk 2 filmi favorilere eklenmiş gibi gösteriyoruz
-    final watchList = [mockMovies[0], mockMovies[3]]; 
+    // Örnek olarak liste boş
+    final watchList = <Movie>[]; 
 
     return Scaffold(
       backgroundColor: Colors.grey[100],

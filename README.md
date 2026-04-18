@@ -30,7 +30,7 @@ Development Roadmap
 [ ] AI-Powered Recommendations: (Optional) To suggest movies based on user preferences.
 
 How to Run
-1. Clone the repository: git clone https://github.com/aliozcankarol/CineVault.git
+1. Clone the repository: git clone https://github.com/aliozcankarol/mobile-programming-project
 
 2. Install dependencies: flutter pub get
 
