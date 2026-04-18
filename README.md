@@ -36,4 +36,4 @@ How to Run
 
 3. Run the app: flutter run
 
-Author: Ali Özcan Karol
+Author: Ali Özcan KAROL
