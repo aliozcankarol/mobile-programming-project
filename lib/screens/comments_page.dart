@@ -88,7 +88,7 @@ class CommentsPage extends StatelessWidget {
                                   child: Image.network(
                                     parsedMovie.posterUrl, 
                                     width: 45, height: 65, fit: BoxFit.cover,
-                                    errorBuilder: (_, __, ___) => const Icon(Icons.movie, size: 45),
+                                    errorBuilder: (_, _, _) => const Icon(Icons.movie, size: 45),
                                   ),
                                 ),
                                 const SizedBox(width: 12),

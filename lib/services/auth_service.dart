@@ -22,6 +22,8 @@ class AuthService {
         throw Exception('Bu e-posta adresi ile kayıtlı kullanıcı bulunamadı.');
       } else if (e.code == 'wrong-password') {
         throw Exception('Şifre yanlış.');
+      } else if (e.code == 'invalid-credential') {
+        throw Exception('Hesap bulunamadı');
       } else if (e.code == 'invalid-email') {
         throw Exception('Geçersiz e-posta formatı.');
       }

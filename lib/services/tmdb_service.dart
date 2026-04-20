@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/movie.dart';
 
 class TmdbService {
-  // TMDB API Key başarıyla entegre edildi.
+  
   static const String apiKey = '4abaa90bf5841b02aeaf36d968f4feb5';
   static const String baseUrl = 'https://api.themoviedb.org/3';
 
@@ -41,7 +41,7 @@ class TmdbService {
     }
   }
 
-  // Filtreme sistemine özel keşif motoru
+  
   Future<List<Movie>> discoverMovies({List<int>? genres, double? minRating}) async {
     if (apiKey == 'YOUR_API_KEY_HERE') {
       throw Exception('Lütfen TMDB API Keyinizi ekleyin!');

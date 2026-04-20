@@ -31,12 +31,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
     if (_currentUser == null) return;
     
     // Auth verileri
-    _nameController.text = _currentUser?.displayName ?? '';
-    _emailController.text = _currentUser?.email ?? '';
-    _usernameController.text = '@${_currentUser?.email?.split('@')[0] ?? ''}';
+    _nameController.text = _currentUser.displayName ?? '';
+    _emailController.text = _currentUser.email ?? '';
+    _usernameController.text = '@${_currentUser.email?.split('@')[0] ?? ''}';
     
     // Veritabanı verilerini okumayı future ile veya ilk girişte halledelim
-    _userService.getUserProfileStream(_currentUser!.uid).first.then((data) {
+    _userService.getUserProfileStream(_currentUser.uid).first.then((data) {
       if (data != null && mounted) {
         setState(() {
           if (data['name'] != null) _nameController.text = data['name'];
@@ -57,7 +57,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     
     try {
       await _userService.updateUserProfile(
-        _currentUser!.uid,
+        _currentUser.uid,
         name: _nameController.text.trim(),
         username: _usernameController.text.trim(),
         email: _emailController.text.trim(),
@@ -66,7 +66,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       );
       
       // FirebaseAuth ismini de güncelleyelim
-      await _currentUser!.updateDisplayName(_nameController.text.trim());
+      await _currentUser.updateDisplayName(_nameController.text.trim());
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

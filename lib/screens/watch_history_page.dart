@@ -41,7 +41,7 @@ class WatchHistoryPage extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 itemBuilder: (context, index) {
                   final data = historyDocs[index];
-                  final movie = Movie.fromTmdb(data); // Re-parsing back to Movie context safely
+
                   // We also override manual fields since we stored them directly.
                   // Since we stored via toFirestore(), we could use fromFirestore but we don't have DocumentSnapshot.
                   // Let's create a Movie object properly.
@@ -72,7 +72,7 @@ class WatchHistoryPage extends StatelessWidget {
                                 child: Image.network(
                                   parsedMovie.posterUrl, 
                                   width: 60, height: 90, fit: BoxFit.cover,
-                                  errorBuilder: (_, __, ___) => const Icon(Icons.movie, size: 60),
+                                  errorBuilder: (_, _, _) => const Icon(Icons.movie, size: 60),
                                 ),
                               ),
                               const SizedBox(width: 12),
@@ -102,7 +102,7 @@ class WatchHistoryPage extends StatelessWidget {
                               width: double.infinity,
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: Colors.blue.withOpacity(0.05),
+                                color: Colors.blue.withValues(alpha: 0.05),
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: Colors.blue.shade100)
                               ),

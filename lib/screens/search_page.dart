@@ -46,7 +46,7 @@ class _SearchPageState extends State<SearchPage> {
   Future<void> _loadSavedPreferences() async {
     if (_currentUser == null) return;
 
-    final prefs = await _userService.getFilterPreferences(_currentUser!.uid);
+    final prefs = await _userService.getFilterPreferences(_currentUser.uid);
     if (prefs != null && mounted) {
       setState(() {
         _selectedGenres = List<int>.from(prefs['genres'] ?? []);
@@ -101,7 +101,7 @@ class _SearchPageState extends State<SearchPage> {
   Future<void> _applyFilters() async {
     if (_currentUser != null) {
       // Tercihleri Firebase'e kaydet
-      await _userService.saveFilterPreferences(_currentUser!.uid, _selectedGenres, _minRating);
+      await _userService.saveFilterPreferences(_currentUser.uid, _selectedGenres, _minRating);
     }
 
     setState(() {
@@ -204,7 +204,7 @@ class _SearchPageState extends State<SearchPage> {
                                 }
                               });
                             },
-                            selectedColor: Colors.deepPurple.withOpacity(0.2),
+                            selectedColor: Colors.deepPurple.withValues(alpha: 0.2),
                             checkmarkColor: Colors.deepPurple,
                           );
                         }).toList(),

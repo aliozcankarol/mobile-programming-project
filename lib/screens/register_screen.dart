@@ -1,7 +1,6 @@
 // lib/screens/register_screen.dart
 
 import 'package:flutter/material.dart';
-import 'main_navigation.dart';
 
 import '../services/auth_service.dart';
 
@@ -51,13 +50,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (_nameController.text.isNotEmpty) {
         await _authService.currentUser?.updateDisplayName(_nameController.text.trim());
       }
+      
+      // Kullanıcı oluşturulduğunda Firebase otomatik giriş yapar.
+      // Biz giriş ekranına dönmek istediğimiz için çıkış yapıyoruz.
+      await _authService.signOut();
 
       if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context, 
-          MaterialPageRoute(builder: (context) => const MainNavigation()), 
-          (route) => false,
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Kayıt başarılı! Lütfen giriş yapın.')),
         );
+        Navigator.pop(context);
       }
     } catch (e) {
       if (mounted) {

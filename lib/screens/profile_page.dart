@@ -31,8 +31,8 @@ class _ProfilePageState extends State<ProfilePage> {
   void _loadStats() {
     if (_currentUser != null) {
       _statsFuture = Future.wait([
-        _userService.getHistoryCount(_currentUser!.uid),
-        _userService.getCommentCount(_currentUser!.uid),
+        _userService.getHistoryCount(_currentUser.uid),
+        _userService.getCommentCount(_currentUser.uid),
       ]).then((results) => {
         'history': results[0],
         'comments': results[1],
@@ -66,11 +66,11 @@ class _ProfilePageState extends State<ProfilePage> {
             
             // Üst Kısım: Profil Fotoğrafı ve Bilgiler
             StreamBuilder<Map<String, dynamic>?>(
-              stream: _userService.getUserProfileStream(_currentUser!.uid),
+              stream: _userService.getUserProfileStream(_currentUser.uid),
               builder: (context, snapshot) {
                 final data = snapshot.data ?? {};
-                final name = data['name'] ?? _currentUser!.displayName ?? 'İsimsiz Kullanıcı';
-                final username = data['username'] ?? '@${_currentUser!.email?.split('@')[0] ?? 'kullanici'}';
+                final name = data['name'] ?? _currentUser.displayName ?? 'İsimsiz Kullanıcı';
+                final username = data['username'] ?? '@${_currentUser.email?.split('@')[0] ?? 'kullanici'}';
                 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
               margin: const EdgeInsets.symmetric(horizontal: 20),
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.deepPurple.withOpacity(0.05),
+                color: Colors.deepPurple.withValues(alpha: 0.05),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: FutureBuilder<Map<String, int>>(
@@ -195,7 +195,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onTap: () => _showLogoutDialog(context),
                 leading: Container(
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(color: Colors.red.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
+                  decoration: BoxDecoration(color: Colors.red.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(10)),
                   child: const Icon(Icons.logout, color: Colors.red),
                 ),
                 title: const Text('Oturumu Kapat', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
@@ -227,7 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
         onTap: onTap,
         leading: Container(
           padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(color: color.withOpacity(0.1), borderRadius: BorderRadius.circular(10)),
+          decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(10)),
           child: Icon(icon, color: color),
         ),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
