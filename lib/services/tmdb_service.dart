@@ -8,10 +8,6 @@ class TmdbService {
   static const String baseUrl = 'https://api.themoviedb.org/3';
 
   Future<List<Movie>> getPopularMovies() async {
-    if (apiKey == 'YOUR_API_KEY_HERE') {
-      throw Exception('Lütfen lib/services/tmdb_service.dart içine kendi TMDB API Keyinizi ekleyin!');
-    }
-
     final response = await http.get(Uri.parse('$baseUrl/movie/popular?api_key=$apiKey&language=tr-TR'));
 
     if (response.statusCode == 200) {
@@ -24,10 +20,6 @@ class TmdbService {
   }
 
   Future<List<Movie>> searchMovies(String query) async {
-    if (apiKey == 'YOUR_API_KEY_HERE') {
-      throw Exception('Lütfen TMDB API Keyinizi ekleyin!');
-    }
-    
     if (query.isEmpty) return [];
 
     final response = await http.get(Uri.parse('$baseUrl/search/movie?api_key=$apiKey&language=tr-TR&query=${Uri.encodeComponent(query)}'));
@@ -43,10 +35,6 @@ class TmdbService {
 
   
   Future<List<Movie>> discoverMovies({List<int>? genres, double? minRating}) async {
-    if (apiKey == 'YOUR_API_KEY_HERE') {
-      throw Exception('Lütfen TMDB API Keyinizi ekleyin!');
-    }
-
     String url = '$baseUrl/discover/movie?api_key=$apiKey&language=tr-TR&sort_by=popularity.desc';
     
     if (genres != null && genres.isNotEmpty) {
